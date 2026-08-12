@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="SimpleBlocks.API/SimpleBlocks.API.csproj" />
+  <Project Path="SimpleBlocks.Application/SimpleBlocks.Application.csproj" />
+  <Project Path="SimpleBlocks.Domain/SimpleBlocks.Domain.csproj" />
+  <Project Path="SimpleBlocks.Infrastructure/SimpleBlocks.Infrastructure.csproj" />
+</Solution>
