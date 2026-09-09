@@ -1,0 +1,23 @@
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: simpleblocks-api
+    container_name: simple-blocks-api
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__Default: "Data Source=/data/simple-blocks.db"
+      Jwt__Secret: ${JWT_SECRET:?Задайте JWT_SECRET в файле .env}
+      Jwt__Issuer: SimpleBlocks
+      Jwt__Audience: SimpleBlocks.Client
+      # Разрешённые источники фронтенда (CORS).
+      Cors__AllowedOrigins__0: "http://localhost:5500"
+      Cors__AllowedOrigins__1: "http://127.0.0.1:5500"
+      Cors__AllowedOrigins__2: "https://gabriellesunrise.github.io"
+    volumes:
+      - ./data:/data

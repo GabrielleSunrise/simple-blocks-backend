@@ -1,0 +1,19 @@
+# .dockerignore — не попадает в build context
+.git
+.gitignore
+**/bin
+**/obj
+.vs
+.idea
+*.user
+*.suo
+*.db
+*.db-wal
+*.db-shm
+data/
+.env
+*.log
+Dockerfile
+.dockerignore
+docker-compose.yml
+README.md
