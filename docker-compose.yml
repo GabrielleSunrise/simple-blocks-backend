@@ -8,7 +8,9 @@ services:
     container_name: simple-blocks-api
     restart: unless-stopped
     ports:
-      - "8080:8080"
+      # Публикуем только на loopback: локальная разработка работает как раньше,
+      # а снаружи API доступен только через Caddy (порты 80/443, прод-оверлей).
+      - "127.0.0.1:8080:8080"
     environment:
       ASPNETCORE_ENVIRONMENT: Production
       ConnectionStrings__Default: "Data Source=/data/simple-blocks.db"

@@ -1,0 +1,29 @@
+# ============================================================================
+# Прод-оверлей: добавляет Caddy — реверс-прокси с автоматическим HTTPS
+# (сертификаты Let's Encrypt получаются и продлеваются сами).
+#
+# Запуск на VPS:
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+#
+# Требование: DNS A-запись api.gabriellesunrise.com -> IP сервера
+# и открытые порты 80/443. Без DNS Caddy не сможет выпустить сертификат
+# и будет повторять попытки (это не ошибка, ждём DNS).
+# ============================================================================
+services:
+  caddy:
+    image: caddy:2
+    container_name: simple-blocks-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - api
+
+volumes:
+  caddy_data:
+  caddy_config:
