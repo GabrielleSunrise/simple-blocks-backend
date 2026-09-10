@@ -1,3 +1,14 @@
 api.gabriellesunrise.com {
 	reverse_proxy api:8080
 }
+
+# Главная страница (визитка) — статика из папки site/ репозитория
+gabriellesunrise.com {
+	root * /srv/gabriellesunrise.com
+	file_server
+}
+
+# www — просто редирект на основной домен
+www.gabriellesunrise.com {
+	redir https://gabriellesunrise.com{uri}
+}
